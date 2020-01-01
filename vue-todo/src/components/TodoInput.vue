@@ -1,31 +1,46 @@
 <template>
   <div class="input-box shadow">
-      <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
-      <span class="add-container" v-on:click="addTodo">
-        <i class="fas fa-bug add-btn"></i>
-      </span>
+    <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
+    <span class="add-container" v-on:click="addTodo">
+      <i class="fas fa-bug add-btn"></i>
+    </span>
+    <modal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고!
+        <i class="closeModalBtn fas fa-times" @click="showModal = false"></i>
+      </h3>
+      <p slot="body">내용을 입력 해주세요.</p>
+      <p slot="footer"></p>
+    </modal>
   </div>
 </template>
 
 <script>
+import Modal from './common/Modal.vue'
+
 export default {
-  data : function(){
+  data () {
     return {
-      newTodoItem : ""
+      newTodoItem: "",
+      showModal: false
     }
   },
-  methods : {
-    addTodo : function(){
-      if(this.newTodoItem === ''){
-        return false;
-      }
-      var obj = { completed : false, item:this.newTodoItem };
-      localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
-      this.clearInput();
+  methods: {
+    addTodo () {
+      if(this.newTodoItem !== ''){        
+        const text = this.newTodoItem.trim();
+        this.$store.commit('addOneItem', text);
+        this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
+      }      
     },
-    clearInput : function(){
+    clearInput () {
       this.newTodoItem = '';
     }
+  },
+  components: {
+    Modal,
   }
 }
 </script>
@@ -53,5 +68,7 @@ input:focus{
   color:white;
   vertical-align: middle;
 }
-
+.closeModalBtn {
+  color:#42b983;
+}
 </style>

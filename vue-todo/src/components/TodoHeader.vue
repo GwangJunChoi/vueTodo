@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-      <h1>투두충의 투두투두</h1>
+      <h1>Todo of TodoBug</h1>
   </header>
 </template>
 

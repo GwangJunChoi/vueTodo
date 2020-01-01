@@ -6,11 +6,11 @@
 
 <script>
 export default {
-    methods : {
-        clearTodo : function() {
-            localStorage.clear();
-        }
+  methods : {
+    clearTodo : function() {
+      this.$store.commit('clearAllItem');
     }
+  }
 }
 </script>
 
