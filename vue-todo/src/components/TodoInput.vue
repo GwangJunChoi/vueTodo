@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     addTodo () {
-      if(this.newTodoItem !== ''){        
+      if(this.newTodoItem !== ''){
         const text = this.newTodoItem.trim();
         this.$store.commit('addOneItem', text);
         this.clearInput();

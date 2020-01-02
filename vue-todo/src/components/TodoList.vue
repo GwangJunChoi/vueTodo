@@ -1,10 +1,10 @@
 <template>
   <div class="todo-list">
       <transition-group name="list" tag="ul">      
-        <li v-for="(item, index) in this.$store.state.todoItems" v-bind:key="item.item" class="shadow">
-          <i class="check-btn fa fa-check" v-bind:class="{ completed : item.completed }" v-on:click="toggleComplete(item, index)"></i>
-          <span v-bind:class="{ completed : item.completed}">{{ item.item }}</span>
-          <span class="btn-remove" v-on:click="removeTodo(item, index)">
+        <li v-for="(todoItem, index) in this.storedTodoItems" v-bind:key="todoItem.item" class="shadow">
+          <i class="check-btn fa fa-check" v-bind:class="{ completed : todoItem.completed }" v-on:click="toggleComplete({todoItem, index})"></i>
+          <span v-bind:class="{ completed : todoItem.completed}">{{ todoItem.item }}</span>
+          <span class="btn-remove" v-on:click="removeTodo({todoItem, index})">
             <i class="fas fa-trash-alt"></i>
           </span>
         </li>      
@@ -13,17 +13,32 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from 'vuex'
+
 export default {
   props : ['propsdata'],
   methods : {
-    removeTodo (todoItem, index) {
-      //this.$emit('removeItem', item, index);
-      this.$store.commit('removeOneItem', {todoItem, index});
-    },
-    toggleComplete (todoItem, index) {
-      //this.$emit('toggleItem', item, index);
-      this.$store.commit('toggleOneItem', {todoItem, index});
-    }
+    ...mapMutations({
+      removeTodo: 'removeOneItem',
+      toggleComplete: 'toggleOneItem'
+    }),
+    // removeTodo (todoItem, index) {
+    //   //this.$emit('removeItem', item, index);
+    //   this.$store.commit('removeOneItem', {todoItem, index});
+    // },
+    // toggleComplete (todoItem, index) {
+    //   //this.$emit('toggleItem', item, index);
+    //   this.$store.commit('toggleOneItem', {todoItem, index});
+    // }
+  },
+  computed: {
+    // todoItems() {
+    //   return this.$store.getters.storedTodoItems;
+    // }
+    ...mapGetters(['storedTodoItems']),
+    // ...mapGetters({ //바인딩 값과 이름이 다를때 객체형 리터럴
+    //   todoItems: 'storedTodoItems'  컴포넌트 메서드 명 : Store의 getter 명
+    //   }),
   }
 }
 </script>
