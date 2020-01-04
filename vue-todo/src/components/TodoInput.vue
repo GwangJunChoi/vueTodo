@@ -2,7 +2,7 @@
   <div class="input-box shadow">
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
     <span class="add-container" v-on:click="addTodo">
-      <i class="fas fa-bug add-btn"></i>
+      <i class="far fa-plus-square"></i>
     </span>
     <modal v-if="showModal" @close="showModal = false">
       <h3 slot="header">
@@ -63,6 +63,7 @@ input:focus{
   float:right;
   background:linear-gradient(to right, #6478FB,#8763FB);
   width: 3rem;
+  color:white;
 }
 .add-btn {
   color:white;

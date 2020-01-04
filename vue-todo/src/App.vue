@@ -29,8 +29,13 @@ export default {
 
 <style>
 body {
+  font-family: 'Ubuntu', sans-serif;
   text-align: center;
+  max-width: 500px;
+  min-width: 320px;
+  margin: 0 auto;
   background-color: #f6f6f6;
+  padding: 10px;
 }
 input {
   border-style : groove;

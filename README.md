@@ -376,6 +376,56 @@ actions: {
     popMsg: 'clickBtn' //컴포넌트 메서드 명 : Store의 뮤테이션 명
 })
 ```
+#### 프로젝트 구조화 & 모듈화
+>##### 방법 1
+```
+//store.js
+import Vue from 'vue'
+import Vue from 'vuex'
+
+export const store = new Vuex.Store({
+    state: {},
+    getters: {},
+    mutations: {},
+    actions: {},
+});
+```
+```
+//store.js
+import Vue from 'vue'
+import Vue from 'vuex'
+import * as getters from 'store/getters.js'
+import * as mutations from 'store/mutations.js'
+import * as from actions 'store/actions.js'
+
+export const store = new Vuex.Store({
+    state: {},
+    getters: getters,
+    mutations: mutations,
+    actions: actions,
+});
+```
+>##### 방법 2
+```
+//store.js
+import Vue from 'vue'
+import Vue from 'vuex'
+import todo from 'modules/todo.js'
+
+export const store = new Vuex.Store({
+    modules: {
+        moduleA: todo, //모듈 명칭 : 모듈 파일명
+        todo // todo: todo
+    }
+});
+
+//todo.js
+const state = {}
+const getters = {}
+const mutations = {}
+const actions = {}
+```
+
 ## 3. 출처
 https://www.inflearn.com/course/vue-pwa-vue-js-%EC%A4%91%EA%B8%89
 
