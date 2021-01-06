@@ -1,6 +1,6 @@
-# vueTodo
+"# vueTodo"
 =============
-[go to todoapp](http://namsookill.cafe24.com/, "todoapp")
+[go to todoapp](http://namsookill.cafe24.com/)
 ## 1. used
 -----------
 1. vuejs
